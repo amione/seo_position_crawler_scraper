@@ -41,7 +41,7 @@ CSV.open("#{file_dump}", "wb") do |csv|
 
 		if @browser.page_source.include?("#{domain_name}") == true
 			doc = Nokogiri::HTML(@browser.page_source)
-			results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']/div[@class='_NId'][1]/div[@class='srg']")
+			results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
 			results_links = results_block.css('h3').css('a')
 
 			current_google_url = @browser.current_url
