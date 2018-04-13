@@ -44,6 +44,7 @@ CSV.open("#{file_dump}", "wb") do |csv|
 				rescue
 #					puts "I'm in the rescue"
 					start_searching = "stop loop"
+					not_an_ad = 4
 				end
 			end
 
