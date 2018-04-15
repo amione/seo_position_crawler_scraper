@@ -27,12 +27,9 @@ CSV.open("#{file_dump}", "wb") do |csv|
 
 		@browser.get url
 
-#		start_searching = "start loop"
-
 		not_an_ad = 0
 
 		while not_an_ad == 0 || not_an_ad == 2
-#			puts "not an ad = #{not_an_ad}"
 
 			start_searching = "start loop"
 
@@ -42,38 +39,46 @@ CSV.open("#{file_dump}", "wb") do |csv|
 					next_link = @browser.find_element(:id, "pnnext")
 					next_link.click
 				rescue
-#					puts "I'm in the rescue"
 					start_searching = "stop loop"
 					not_an_ad = 4
 				end
 			end
 
 			if not_an_ad == 0 || not_an_ad == 2
+
 				doc = Nokogiri::HTML(@browser.page_source)
 				results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
 				results_links = results_block.css('h3').css('a')
 
-				url1 = results_block.css('h3').css('a')[0].attributes["href"].value
-				url2 = results_block.css('h3').css('a')[1].attributes["href"].value
-				url3 = results_block.css('h3').css('a')[2].attributes["href"].value
-				url4 = results_block.css('h3').css('a')[3].attributes["href"].value
-				url5 = results_block.css('h3').css('a')[4].attributes["href"].value
-				url6 = results_block.css('h3').css('a')[5].attributes["href"].value
-				url7 = results_block.css('h3').css('a')[6].attributes["href"].value
-				url8 = results_block.css('h3').css('a')[7].attributes["href"].value
-				url9 = results_block.css('h3').css('a')[8].attributes["href"].value
-				url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+				begin
+					url1 = results_block.css('h3').css('a')[0].attributes["href"].value
+					url2 = results_block.css('h3').css('a')[1].attributes["href"].value
+					url3 = results_block.css('h3').css('a')[2].attributes["href"].value
+					url4 = results_block.css('h3').css('a')[3].attributes["href"].value
+					url5 = results_block.css('h3').css('a')[4].attributes["href"].value
+					url6 = results_block.css('h3').css('a')[5].attributes["href"].value
+					url7 = results_block.css('h3').css('a')[6].attributes["href"].value
+					url8 = results_block.css('h3').css('a')[7].attributes["href"].value
+					url9 = results_block.css('h3').css('a')[8].attributes["href"].value
+					url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+				rescue
 
-				check_url1 = url1.to_s.include?("#{domain_name}")
-				check_url2 = url2.to_s.include?("#{domain_name}")
-				check_url3 = url3.to_s.include?("#{domain_name}")
-				check_url4 = url4.to_s.include?("#{domain_name}")
-				check_url5 = url5.to_s.include?("#{domain_name}")
-				check_url6 = url6.to_s.include?("#{domain_name}")
-				check_url7 = url7.to_s.include?("#{domain_name}")
-				check_url8 = url8.to_s.include?("#{domain_name}")
-				check_url9 = url9.to_s.include?("#{domain_name}")
-				check_url10 = url10.to_s.include?("#{domain_name}")
+				end
+
+				begin
+					check_url1 = url1.to_s.include?("#{domain_name}")
+					check_url2 = url2.to_s.include?("#{domain_name}")
+					check_url3 = url3.to_s.include?("#{domain_name}")
+					check_url4 = url4.to_s.include?("#{domain_name}")
+					check_url5 = url5.to_s.include?("#{domain_name}")
+					check_url6 = url6.to_s.include?("#{domain_name}")
+					check_url7 = url7.to_s.include?("#{domain_name}")
+					check_url8 = url8.to_s.include?("#{domain_name}")
+					check_url9 = url9.to_s.include?("#{domain_name}")
+					check_url10 = url10.to_s.include?("#{domain_name}")
+				rescue
+
+				end
 
 				if check_url1 == true
 					not_an_ad = 1
@@ -128,6 +133,7 @@ CSV.open("#{file_dump}", "wb") do |csv|
 		end
 
 		if @browser.page_source.include?("#{domain_name}") == true
+
 			doc = Nokogiri::HTML(@browser.page_source)
 			results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
 			results_links = results_block.css('h3').css('a')
@@ -136,27 +142,35 @@ CSV.open("#{file_dump}", "wb") do |csv|
 
 			starting_google_position = current_google_url.split('&start=').last.split('&').first.to_i
 
-			url1 = results_block.css('h3').css('a')[0].attributes["href"].value
-			url2 = results_block.css('h3').css('a')[1].attributes["href"].value
-			url3 = results_block.css('h3').css('a')[2].attributes["href"].value
-			url4 = results_block.css('h3').css('a')[3].attributes["href"].value
-			url5 = results_block.css('h3').css('a')[4].attributes["href"].value
-			url6 = results_block.css('h3').css('a')[5].attributes["href"].value
-			url7 = results_block.css('h3').css('a')[6].attributes["href"].value
-			url8 = results_block.css('h3').css('a')[7].attributes["href"].value
-			url9 = results_block.css('h3').css('a')[8].attributes["href"].value
-			url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+			begin
+				url1 = results_block.css('h3').css('a')[0].attributes["href"].value
+				url2 = results_block.css('h3').css('a')[1].attributes["href"].value
+				url3 = results_block.css('h3').css('a')[2].attributes["href"].value
+				url4 = results_block.css('h3').css('a')[3].attributes["href"].value
+				url5 = results_block.css('h3').css('a')[4].attributes["href"].value
+				url6 = results_block.css('h3').css('a')[5].attributes["href"].value
+				url7 = results_block.css('h3').css('a')[6].attributes["href"].value
+				url8 = results_block.css('h3').css('a')[7].attributes["href"].value
+				url9 = results_block.css('h3').css('a')[8].attributes["href"].value
+				url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+			rescue
 
-			check_url1 = url1.to_s.include?("#{domain_name}")
-			check_url2 = url2.to_s.include?("#{domain_name}")
-			check_url3 = url3.to_s.include?("#{domain_name}")
-			check_url4 = url4.to_s.include?("#{domain_name}")
-			check_url5 = url5.to_s.include?("#{domain_name}")
-			check_url6 = url6.to_s.include?("#{domain_name}")
-			check_url7 = url7.to_s.include?("#{domain_name}")
-			check_url8 = url8.to_s.include?("#{domain_name}")
-			check_url9 = url9.to_s.include?("#{domain_name}")
-			check_url10 = url10.to_s.include?("#{domain_name}")
+			end
+
+			begin
+				check_url1 = url1.to_s.include?("#{domain_name}")
+				check_url2 = url2.to_s.include?("#{domain_name}")
+				check_url3 = url3.to_s.include?("#{domain_name}")
+				check_url4 = url4.to_s.include?("#{domain_name}")
+				check_url5 = url5.to_s.include?("#{domain_name}")
+				check_url6 = url6.to_s.include?("#{domain_name}")
+				check_url7 = url7.to_s.include?("#{domain_name}")
+				check_url8 = url8.to_s.include?("#{domain_name}")
+				check_url9 = url9.to_s.include?("#{domain_name}")
+				check_url10 = url10.to_s.include?("#{domain_name}")
+			rescue
+
+			end
 
 			if check_url1 == true
 				site_position = starting_google_position + 1
@@ -221,6 +235,7 @@ CSV.open("#{file_dump}", "wb") do |csv|
 			@browser.quit
 
 		elsif @browser.page_source.include?("#{domain_name}") == false
+
 			current_google_url = @browser.current_url
 			starting_google_position = current_google_url.split('&start=').last.split('&').first.to_i
 			not_found_in = starting_google_position + 10
