@@ -47,20 +47,24 @@ CSV.open("#{file_dump}", "wb") do |csv|
 			if not_an_ad == 0 || not_an_ad == 2
 
 				doc = Nokogiri::HTML(@browser.page_source)
-				results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
-				results_links = results_block.css('h3').css('a')
+				#results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']/div[@class='bkWMgd']/div[@class='srg']")
+				#results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
+				results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']")
+				results_links = results_block.css('div.srg').css('div.r')
+
+				#results_links = results_block.css('h3').css('a')
 
 				begin
-					url1 = results_block.css('h3').css('a')[0].attributes["href"].value
-					url2 = results_block.css('h3').css('a')[1].attributes["href"].value
-					url3 = results_block.css('h3').css('a')[2].attributes["href"].value
-					url4 = results_block.css('h3').css('a')[3].attributes["href"].value
-					url5 = results_block.css('h3').css('a')[4].attributes["href"].value
-					url6 = results_block.css('h3').css('a')[5].attributes["href"].value
-					url7 = results_block.css('h3').css('a')[6].attributes["href"].value
-					url8 = results_block.css('h3').css('a')[7].attributes["href"].value
-					url9 = results_block.css('h3').css('a')[8].attributes["href"].value
-					url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+					url1 = results_block.css('div.srg').css('div.r')[0].children[0].attributes["href"].value
+					url2 = results_block.css('div.srg').css('div.r')[1].children[0].attributes["href"].value
+					url3 = results_block.css('div.srg').css('div.r')[2].children[0].attributes["href"].value
+					url4 = results_block.css('div.srg').css('div.r')[3].children[0].attributes["href"].value
+					url5 = results_block.css('div.srg').css('div.r')[4].children[0].attributes["href"].value
+					url6 = results_block.css('div.srg').css('div.r')[5].children[0].attributes["href"].value
+					url7 = results_block.css('div.srg').css('div.r')[6].children[0].attributes["href"].value
+					url8 = results_block.css('div.srg').css('div.r')[7].children[0].attributes["href"].value
+					url9 = results_block.css('div.srg').css('div.r')[8].children[0].attributes["href"].value
+					url10 = results_block.css('div.srg').css('div.r')[9].children[0].attributes["href"].value
 				rescue
 
 				end
@@ -135,24 +139,24 @@ CSV.open("#{file_dump}", "wb") do |csv|
 		if @browser.page_source.include?("#{domain_name}") == true
 
 			doc = Nokogiri::HTML(@browser.page_source)
-			results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']/div[@id='search']/div/div[@id='ires']/div[@id='rso']")
-			results_links = results_block.css('h3').css('a')
+			results_block = doc.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[@id='res']")
+			results_links = results_block.css('div.srg').css('div.r')
 
 			current_google_url = @browser.current_url
 
 			starting_google_position = current_google_url.split('&start=').last.split('&').first.to_i
 
 			begin
-				url1 = results_block.css('h3').css('a')[0].attributes["href"].value
-				url2 = results_block.css('h3').css('a')[1].attributes["href"].value
-				url3 = results_block.css('h3').css('a')[2].attributes["href"].value
-				url4 = results_block.css('h3').css('a')[3].attributes["href"].value
-				url5 = results_block.css('h3').css('a')[4].attributes["href"].value
-				url6 = results_block.css('h3').css('a')[5].attributes["href"].value
-				url7 = results_block.css('h3').css('a')[6].attributes["href"].value
-				url8 = results_block.css('h3').css('a')[7].attributes["href"].value
-				url9 = results_block.css('h3').css('a')[8].attributes["href"].value
-				url10 = results_block.css('h3').css('a')[9].attributes["href"].value
+				url1 = results_block.css('div.srg').css('div.r')[0].children[0].attributes["href"].value
+				url2 = results_block.css('div.srg').css('div.r')[1].children[0].attributes["href"].value
+				url3 = results_block.css('div.srg').css('div.r')[2].children[0].attributes["href"].value
+				url4 = results_block.css('div.srg').css('div.r')[3].children[0].attributes["href"].value
+				url5 = results_block.css('div.srg').css('div.r')[4].children[0].attributes["href"].value
+				url6 = results_block.css('div.srg').css('div.r')[5].children[0].attributes["href"].value
+				url7 = results_block.css('div.srg').css('div.r')[6].children[0].attributes["href"].value
+				url8 = results_block.css('div.srg').css('div.r')[7].children[0].attributes["href"].value
+				url9 = results_block.css('div.srg').css('div.r')[8].children[0].attributes["href"].value
+				url10 = results_block.css('div.srg').css('div.r')[9].children[0].attributes["href"].value
 			rescue
 
 			end
